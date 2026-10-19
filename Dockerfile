@@ -22,11 +22,16 @@ RUN mkdir -p storage/framework/cache/data \
 
 RUN chmod -R 775 storage bootstrap/cache
 
+# Remove old Nginx default configuration
+RUN rm -f /etc/nginx/sites-enabled/default \
+    /etc/nginx/sites-enabled/default.conf
+
+# Install Laravel Nginx configuration
+COPY nginx.conf /etc/nginx/sites-enabled/pennypilot.conf
+
 # Copy Render startup script
 COPY start-render.sh /usr/local/bin/start-render.sh
 
-# Make script executable
 RUN chmod +x /usr/local/bin/start-render.sh
 
-# Start Laravel with migration
 CMD ["/usr/local/bin/start-render.sh"]
