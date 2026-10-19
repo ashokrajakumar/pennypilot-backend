@@ -14,6 +14,8 @@ return [
     |
     */
 
+    'pennypilot_api_key' => env('PENNYPILOT_API_KEY'),
+
     'postmark' => [
         'key' => env('POSTMARK_API_KEY'),
     ],
