@@ -22,4 +22,11 @@ RUN mkdir -p storage/framework/cache/data \
 
 RUN chmod -R 775 storage bootstrap/cache
 
-CMD ["/start.sh"]
+# Copy Render startup script
+COPY start-render.sh /usr/local/bin/start-render.sh
+
+# Make script executable
+RUN chmod +x /usr/local/bin/start-render.sh
+
+# Start Laravel with migration
+CMD ["/usr/local/bin/start-render.sh"]
